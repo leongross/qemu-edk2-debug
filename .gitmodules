@@ -1,0 +1,3 @@
+[submodule "peinfo"]
+	path = peinfo
+	url = https://github.com/retrage/peinfo.git
