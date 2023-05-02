@@ -1,3 +1,6 @@
 [submodule "peinfo"]
 	path = peinfo
 	url = https://github.com/retrage/peinfo.git
+[submodule "qemu"]
+	path = qemu
+	url = https://gitlab.com/qemu-project/qemu.git
