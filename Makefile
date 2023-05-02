@@ -9,7 +9,11 @@ OVMFBIOS:=$(OVMFBASE)/FV/OVMF.fd  # edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd
 .PHONY: run debug clean
 .PRECIOUS: $(LOG)
 
-QEMU:=qemu-system-x86_64
+# https://github.com/tianocore/edk2/pull/3935/files
+# to make ovmf run with qemu 8.0.0 build it and use that instead of stock qemu (at least on fedora < 39)
+QEMU:=/home/mxhdrm/documents/qemu-edk2-debug/qemu/build/qemu-system-x86_64
+#QEMU:=$(PWD)/qemu/build/qemu-x86_64
+
 PEINFO:=peinfo/peinfo
 LOG_COLLECTION_TIMEOUT_SEC=10
 GDBINIT_LOCAL=$(shell realpath .gdbinit)
@@ -51,6 +55,9 @@ $(PEINFO): peinfo
 $(GDBINIT_LOCAL): $(LOG) $(PEINFO)
 	./gen_symbol_offsets.sh
 	./setup_gdbinit.sh
+
+qemu/build/qemu-x86_64: qemu
+	cd qemu && ./configure && make -j $(nproc)
 
 # TDOD
 # build-edk: edk2/

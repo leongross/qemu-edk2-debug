@@ -8,8 +8,8 @@ if ! $(grep -q "set auto-load safe-path $(pwd)" "$gdbinit");then
     echo "set auto-load safe-path $(pwd)" >> "$gdbinit"
 fi
 
-if [ -f "$gdbinit_local" ]; then
-    echo "b *_ModuleEntryPoint" >> "$gdbinit_local"
-    echo "target remote :1234" >> "$gdbinit_local"
-fi
+# if [ -f "$gdbinit_local" ]; then
+#     echo "b *_ModuleEntryPoint" >> "$gdbinit_local"
+#     echo "target remote :1234" >> "$gdbinit_local"
+# fi
 
