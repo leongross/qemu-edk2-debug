@@ -5,6 +5,9 @@ OVMFBASE:=edk2/Build/OvmfX64/DEBUG_GCC5/
 OVMFCODE:=$(OVMFBASE)/FV/OVMF_CODE.fd
 OVMFVARS:=$(OVMFBASE)/FV/OVMF_VARS.fd
 QEMU:=qemu-system-x86_64
+PEINFO:=peinfo/peinfo
+LOG_COLLECTION_TIMEOUT_SEC=10
+GDBINIT_LOCAL=$(shell realpath .gdbinit)
 
 QEMUFLAGS:=-drive if=pflash,format=raw,read-only=on,file=$(OVMFCODE) \
           -drive if=pflash,format=raw,file=$(OVMFVARS) \
@@ -12,20 +15,32 @@ QEMUFLAGS:=-drive if=pflash,format=raw,read-only=on,file=$(OVMFCODE) \
           -serial stdio \
           -nographic \
           -nodefaults
-run:
-	$(QEMU) $(QEMUFLAGS)
 
-debug:
+$(LOG):
+	@echo "Starting log generation ($LOG_COLLECTION_TIMEOUT_SEC sec)"
+	-timeout $(LOG_COLLECTION_TIMEOUT_SEC) $(QEMU) $(QEMUFLAGS)
+	@echo "Stopped log generation"
+
+debug: $(GDBINIT_LOCAL)
+	@echo "[*] Attach to the ruinning gdb session with 'target'"
 	$(QEMU) $(QEMUFLAGS) -s -S
-
-# TDOD
-# build-edk: edk2/
 
 peinfo:
 	$(shell git update --init --recursive)
 
-peinfo/peinfo: peinfo
+$(PEINFO): peinfo
 	$(shell make -C peinfo)
 
-.PHONY: run debug
 
+$(GDBINIT_LOCAL): $(LOG) $(PEINFO)
+	./gen_symbol_offsets.sh
+	./setup_gdbinit.sh
+
+# TDOD
+# build-edk: edk2/
+
+.PHONY: run debug clean
+
+clean:
+	-rm $(GDBINIT_LOCAL) $(LOG)
+	-make -C edk2/ clean
