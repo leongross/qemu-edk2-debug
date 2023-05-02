@@ -4,6 +4,9 @@ LOG:=debug.log
 OVMFBASE:=edk2/Build/OvmfX64/DEBUG_GCC5/
 OVMFCODE:=$(OVMFBASE)/FV/OVMF_CODE.fd
 OVMFVARS:=$(OVMFBASE)/FV/OVMF_VARS.fd
+OVMFBIOS:=$(OVMFBASE)/FV/OVMF.fd  # edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd
+
+
 QEMU:=qemu-system-x86_64
 PEINFO:=peinfo/peinfo
 LOG_COLLECTION_TIMEOUT_SEC=10
@@ -15,6 +18,15 @@ QEMUFLAGS:=-drive if=pflash,format=raw,read-only=on,file=$(OVMFCODE) \
           -serial stdio \
           -nographic \
           -nodefaults
+
+# qemu-system-x86_64 --bios ~/lib/edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd --enable-kvm --net none -serial mon:stdio -s
+QEMUFLAGS_RUN=--bios $(OVMFBIOS) \
+			  --enable-kvm \
+			  --net none \
+			  -serial mon:stdio \
+			  -s 
+run:
+	$(QEMU) $(QEMUFLAGS_RUN)
 
 $(LOG):
 	@echo "Starting log generation ($LOG_COLLECTION_TIMEOUT_SEC sec)"
