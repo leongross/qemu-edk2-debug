@@ -26,7 +26,7 @@ Loading PEIM 222C386D-5ABC-4FB4-B124-FBB82488ACF4
 Loading PEIM at 0x00000834DC0 EntryPoint=0x0000083C76D PlatformPei.efi
 Platform PEIM Loaded
 CMOS:
-00: 24 00 51 00 11 00 03 02 05 23 26 02 10 80 00 00
+00: 44 00 38 00 12 00 03 02 05 23 26 02 00 80 00 00
 10: 00 00 00 00 06 80 02 FF FF 00 00 00 00 00 00 00
 20: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 30: FF FF 20 00 00 07 00 20 30 00 00 00 00 12 00 00
@@ -50,29 +50,1324 @@ PlatformDynamicMmioWindow:   Addr Space 0x10000000000 (1024 GB)
 PlatformDynamicMmioWindow:   MMIO Space 0x2000000000 (128 GB)
 Select Item: 0x19
 Select Item: 0x25
-PlatformDynamicMmioWindow:   Pci64 Base 0xE000000000
+PlatformReservationConflictCB: move mmio: 0xE000000000 => C000000000
+PlatformDynamicMmioWindow:   Pci64 Base 0xC000000000
 PlatformDynamicMmioWindow:   Pci64 Size 0x2000000000
-AddressWidthInitialization: Pci64Base=0xE000000000 Pci64Size=0x2000000000
+AddressWidthInitialization: Pci64Base=0xC000000000 Pci64Size=0x2000000000
 Select Item: 0x5
-PlatformCpuCountBugCheck: Present=0 Possible=1
-PlatformCpuCountBugCheck: Broken CPU hotplug register block found. Update QEMU to version 8+, or
-PlatformCpuCountBugCheck: to a stable release with commit dab30fbef389 backported. Refer to
-PlatformCpuCountBugCheck: <https://bugzilla.tianocore.org/show_bug.cgi?id=4250>.
-PlatformCpuCountBugCheck: Consequences of the QEMU bug may include, but are not limited to:
-PlatformCpuCountBugCheck: - all firmware logic, dependent on the CPU hotplug register block,
-PlatformCpuCountBugCheck:   being confused, for example, multiprocessing-related logic;
-PlatformCpuCountBugCheck: - guest OS data loss, including filesystem corruption, due to crash or
-PlatformCpuCountBugCheck:   hang during ACPI S3 resume;
-PlatformCpuCountBugCheck: - SMM privilege escalation, by a malicious guest OS or 3rd partty UEFI
-PlatformCpuCountBugCheck:   agent, against the platform firmware.
-PlatformCpuCountBugCheck: These symptoms need not necessarily be limited to the QEMU user
-PlatformCpuCountBugCheck: attempting to hot(un)plug a CPU.
-PlatformCpuCountBugCheck: The firmware will now stop (hang) deliberately, in order to prevent the
-PlatformCpuCountBugCheck: above symptoms.
-PlatformCpuCountBugCheck: You can forcibly override the hang, *at your own risk*, with the
-PlatformCpuCountBugCheck: following *experimental* QEMU command line option:
-PlatformCpuCountBugCheck:   -fw_cfg name=opt/org.tianocore/X-Cpuhp-Bugcheck-Override,string=yes
-PlatformCpuCountBugCheck: Please only report such bugs that you can reproduce *without* the
-PlatformCpuCountBugCheck: override.
+PlatformMaxCpuCountInitialization: BootCpuCount=1 MaxCpuCount=1
 Select Item: 0x19
-ASSERT /workspaces/edk2-tmp/edk2/OvmfPkg/Library/PlatformInitLib/Platform.c(522): ((BOOLEAN)(0==1))
+Select Item: 0x25
+PlatformGetLowMemoryCB: LowMemory=0x8000000
+PublishPeiMemory: PhysMemAddressWidth=40 PeiMemoryCap=69644 KB
+PeiInstallPeiMemory MemoryBegin 0x3B75000, MemoryLength 0x4403000
+Select Item: 0x19
+Select Item: 0x25
+PlatformQemuInitializeRam called
+Select Item: 0x19
+Select Item: 0x25
+Select Item: 0x19
+Select Item: 0x25
+PlatformAddHobCB: Reserved [0xFD00000000, 0x10000000000)
+Reserved variable store memory: 0x7EF4000; size: 528kb
+Platform PEI Firmware Volume Initialization
+Install PPI: 49EDB1C1-BF21-4761-BB12-EB0031AABB39
+Notify: PPI Guid: 49EDB1C1-BF21-4761-BB12-EB0031AABB39, Peim notify entry point: 823C34
+The 1th FV start address is 0x00000900000, size is 0x00D00000, handle is 0x900000
+Select Item: 0x19
+Select Item: 0x25
+Select Item: 0x19
+Register PPI Notify: EE16160A-E8BE-47A6-820A-C6900DB0250A
+Select Item: 0x19
+Temp Stack : BaseAddress=0x818000 Length=0x8000
+Temp Heap  : BaseAddress=0x810000 Length=0x8000
+Total temporary memory:    65536 bytes.
+  temporary memory stack ever used:       29952 bytes.
+  temporary memory heap used for HobList: 7128 bytes.
+  temporary memory heap occupied by memory pages: 0 bytes.
+Memory Allocation 0x0000000A 0x7F78000 - 0x7FFFFFF
+Memory Allocation 0x0000000A 0x810000 - 0x81FFFF
+Memory Allocation 0x0000000A 0x807000 - 0x807FFF
+Memory Allocation 0x0000000A 0x800000 - 0x805FFF
+Memory Allocation 0x0000000A 0x806000 - 0x806FFF
+Memory Allocation 0x0000000A 0x80B000 - 0x80BFFF
+Memory Allocation 0x00000006 0x7EF4000 - 0x7F77FFF
+Memory Allocation 0x0000000A 0x820000 - 0x8FFFFF
+Memory Allocation 0x00000004 0x900000 - 0x15FFFFF
+Old Stack size 32768, New stack size 131072
+Stack Hob: BaseAddress=0x3B75000 Length=0x20000
+Heap Offset = 0x3385000 Stack Offset = 0x3375000
+TemporaryRamMigration(0x810000, 0x3B8D000, 0x10000)
+Loading PEIM 52C05B14-0B98-496C-BC3B-04B50211D680
+Loading PEIM at 0x00007EE8000 EntryPoint=0x00007EF006A PeiCore.efi
+Reinstall PPI: 8C8CE578-8A3D-4F1C-9935-896185C32DD3
+Reinstall PPI: 5473C07A-3DCB-4DCA-BD6F-1E9689E7349A
+Reinstall PPI: B9E0ABFE-5979-4914-977F-6DEE78C278A6
+Install PPI: F894643D-C449-42D1-8EA8-85BDD8C65BDE
+Loading PEIM 9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50
+Loading PEIM at 0x00007EE3000 EntryPoint=0x00007EE62B8 PcdPeim.efi
+Reinstall PPI: 06E81C58-4AD7-44BC-8390-F10265F72480
+Reinstall PPI: 4D8B155B-C059-4C8F-8926-06FD4331DB8A
+Reinstall PPI: 01F34D25-4DE2-23AD-3FF3-36353FF323F1
+Reinstall PPI: A60C6B59-E459-425D-9C69-0BCC9CB27D81
+Loading PEIM 86D70125-BAA3-4296-A62F-602BEBBB9081
+Loading PEIM at 0x00007EDE000 EntryPoint=0x00007EE12AF DxeIpl.efi
+Install PPI: 1A36E4E7-FAB6-476A-8E75-695A0576FDD7
+Install PPI: 0AE8CE5D-E448-4437-A8D7-EBF5F194F731
+Loading PEIM 89E549B0-7CFE-449D-9BA3-10D8B2312D71
+Loading PEIM at 0x00007ED9000 EntryPoint=0x00007EDBB00 S3Resume2Pei.efi
+Install PPI: 6D582DBC-DB85-4514-8FCC-5ADF6227B147
+Loading PEIM EDADEB9D-DDBA-48BD-9D22-C1C169C8C5C6
+Loading PEIM at 0x00007ECA000 EntryPoint=0x00007ECF1E9 CpuMpPei.efi
+Register PPI Notify: F894643D-C449-42D1-8EA8-85BDD8C65BDE
+Notify: PPI Guid: F894643D-C449-42D1-8EA8-85BDD8C65BDE, Peim notify entry point: 7ED282B
+AP Loop Mode is 1
+AP Vector: non-16-bit = 7EB8000/447
+GetMicrocodePatchInfoFromHob: Microcode patch cache HOB is not found.
+CPU[0000]: Microcode revision = 00000000, expected = 00000000
+Register PPI Notify: 8F9D4825-797D-48FC-8471-845025792EF6
+Does not find any stored CPU BIST information from PPI!
+  APICID - 0x00000000, BIST - 0x00000000
+Install PPI: 9E9F374B-8F16-4230-9824-5846EE766A97
+Install PPI: 5CB9CB3D-31A4-480C-9498-29D269BACFBA
+Install PPI: EE16160A-E8BE-47A6-820A-C6900DB0250A
+Notify: PPI Guid: EE16160A-E8BE-47A6-820A-C6900DB0250A, Peim notify entry point: 8379C1
+PlatformPei: ClearCacheOnMpServicesAvailable
+DiscoverPeimsAndOrderWithApriori(): Found 0x0 PEI FFS files in the 1th FV
+DXE IPL Entry
+Loading PEIM D6A2CB7F-6A18-4E2F-B43B-9920A733700A
+Loading PEIM at 0x00007E89000 EntryPoint=0x00007EA0DC9 DxeCore.efi
+Loading DXE CORE at 0x00007E89000 EntryPoint=0x00007EA0DC9
+AddressBits=40 5LevelPaging=0 1GPage=0
+Pml5=1 Pml4=2 Pdp=512 TotalPage=1027
+Install PPI: 605EA650-C65C-42E1-BA80-91A52AB618C6
+Notify: PPI Guid: 605EA650-C65C-42E1-BA80-91A52AB618C6, Peim notify entry point: 82EB37
+CoreInitializeMemoryServices:
+  BaseAddress - 0x3B99000 Length - 0x3C67000 MinimalMemorySizeNeeded - 0x322000
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 7EAE2A8
+ProtectUefiImageCommon - 0x7EAE2A8
+  - 0x0000000007E89000 - 0x000000000002F000
+DxeMain: MemoryBaseAddress=0x3B99000 MemoryLength=0x3C67000
+HOBLIST address in DXE = 0x74E7018
+Memory Allocation 0x0000000A 0x7F78000 - 0x7FFFFFF
+Memory Allocation 0x0000000A 0x810000 - 0x81FFFF
+Memory Allocation 0x0000000A 0x807000 - 0x807FFF
+Memory Allocation 0x0000000A 0x800000 - 0x805FFF
+Memory Allocation 0x0000000A 0x806000 - 0x806FFF
+Memory Allocation 0x0000000A 0x80B000 - 0x80BFFF
+Memory Allocation 0x00000006 0x7EF4000 - 0x7F77FFF
+Memory Allocation 0x0000000A 0x820000 - 0x8FFFFF
+Memory Allocation 0x00000004 0x900000 - 0x15FFFFF
+Memory Allocation 0x00000004 0x7E69000 - 0x7E88FFF
+Memory Allocation 0x00000003 0x7EE8000 - 0x7EF3FFF
+Memory Allocation 0x00000003 0x7EE3000 - 0x7EE7FFF
+Memory Allocation 0x00000003 0x7EDE000 - 0x7EE2FFF
+Memory Allocation 0x00000003 0x7ED9000 - 0x7EDDFFF
+Memory Allocation 0x00000003 0x7ECA000 - 0x7ED8FFF
+Memory Allocation 0x00000004 0x7EB9000 - 0x7EC9FFF
+Memory Allocation 0x00000003 0x7EB8000 - 0x7EB8FFF
+Memory Allocation 0x00000003 0x7E89000 - 0x7EB7FFF
+Memory Allocation 0x00000003 0x7E89000 - 0x7EB7FFF
+Memory Allocation 0x00000004 0x7E69000 - 0x7E88FFF
+Memory Allocation 0x00000004 0x7800000 - 0x7DFFFFF
+Memory Allocation 0x00000007 0x7E00000 - 0x7E68FFF
+Memory Allocation 0x00000004 0x3B75000 - 0x3B94FFF
+FV Hob            0x900000 - 0x15FFFFF
+InstallProtocolInterface: D8117CFE-94A6-11D4-9A3A-0090273FC14D 7EAF600
+InstallProtocolInterface: 8F644FA9-E850-4DB1-9CE2-0B44698E8DA4 74E3D30
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 74E3098
+InstallProtocolInterface: 220E73B6-6BDB-4413-8405-B974B108619A 74E3630
+InstallProtocolInterface: EE4E5898-3914-4259-9D6E-DC7BD79403CF 7EAF518
+Loading driver 9B680FCE-AD6B-4F3A-B60B-F59899003443
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 7170BC0
+Loading driver at 0x00007158000 EntryPoint=0x0000715FF83 DevicePathDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 7170118
+ProtectUefiImageCommon - 0x7170BC0
+  - 0x0000000007158000 - 0x000000000000B600
+InstallProtocolInterface: 0379BE4E-D706-437D-B037-EDB82FB772A4 7162900
+InstallProtocolInterface: 8B843E20-8132-4852-90CC-551A4E4A7F1C 71628E0
+InstallProtocolInterface: 05C99A21-C70F-4AD2-8A5F-35DF3343F51E 71628C0
+Loading driver 80CF7257-87AB-47F9-A3FE-D50B76D89541
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 71702C0
+Loading driver at 0x00007164000 EntryPoint=0x00007167A9A PcdDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 7157018
+ProtectUefiImageCommon - 0x71702C0
+  - 0x0000000007164000 - 0x0000000000005E40
+InstallProtocolInterface: 11B34006-D85B-4D0A-A290-D5A571310EF7 7169B00
+InstallProtocolInterface: 13A3F0F6-264A-3EF0-F2E0-DEC512342F34 7169A60
+InstallProtocolInterface: 5BE40F57-FA68-4610-BBBF-E9C5FCDAD365 7169A30
+InstallProtocolInterface: FD0F4478-0EFD-461D-BA2D-E58C45FD5F5E 7169A10
+Loading driver 2EC9DA37-EE35-4DE9-86C5-6D9A81DC38A7
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 716FB40
+Loading driver at 0x00007152000 EntryPoint=0x0000715465C AmdSevDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 716FE18
+ProtectUefiImageCommon - 0x716FB40
+  - 0x0000000007152000 - 0x0000000000004440
+Error: Image at 00007152000 start failed: Unsupported
+Loading driver E750224E-7BCE-40AF-B5BB-47E3611EB5C2
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 716FB40
+Loading driver at 0x00007152000 EntryPoint=0x000071541E4 TdxDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 716FE98
+ProtectUefiImageCommon - 0x716FB40
+  - 0x0000000007152000 - 0x0000000000004C40
+InstallProtocolInterface: BB00A5CA-08CE-462F-A537-43C74A825CA4 0
+Loading driver 733CBAC2-B23F-4B92-BC8E-FB01CE5907B7
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 716F140
+Loading driver at 0x000076E4000 EntryPoint=0x000076E70D9 FvbServicesRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 716F418
+ProtectUefiImageCommon - 0x716F140
+  - 0x00000000076E4000 - 0x0000000000009000
+QEMU Flash: Attempting flash detection at FFC00010
+QemuFlashDetected => FD behaves as FLASH
+QemuFlashDetected => Yes
+Installing QEMU flash FVB
+InstallProtocolInterface: 8F644FA9-E850-4DB1-9CE2-0B44698E8DA4 75EC8B0
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 716EC18
+Loading driver D93CE3D8-A7EB-4730-8C8E-CC466A9ECC3C
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 716E9C0
+Loading driver at 0x000076DD000 EntryPoint=0x000076DFA5B ReportStatusCodeRouterRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 716E218
+ProtectUefiImageCommon - 0x716E9C0
+  - 0x00000000076DD000 - 0x0000000000007000
+InstallProtocolInterface: 86212936-0E76-41C8-A03A-2AF2FC1C39E2 76E2060
+InstallProtocolInterface: D2B2B828-0826-48A7-B3DF-983C006024F0 76E2040
+Loading driver B601F8C4-43B7-4784-95B1-F4226CB40CEE
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 716B040
+Loading driver at 0x000076D7000 EntryPoint=0x000076D9663 RuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 716BE18
+ProtectUefiImageCommon - 0x716B040
+  - 0x00000000076D7000 - 0x0000000000006000
+InstallProtocolInterface: B7DFB4E1-052F-449F-87BE-9818FC91B733 76DB080
+Loading driver F80697E9-7FD6-4665-8646-88E33EF71DFC
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 716B3C0
+Loading driver at 0x0000714C000 EntryPoint=0x0000714D728 SecurityStubDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 716B718
+ProtectUefiImageCommon - 0x716B3C0
+  - 0x000000000714C000 - 0x0000000000002E40
+InstallProtocolInterface: 94AB2F58-1438-4EF1-9152-18941A3A0E68 714EC58
+InstallProtocolInterface: A46423E3-4617-49F1-B9FF-D1BFA9115839 714EC50
+InstallProtocolInterface: 15853D7C-3DDF-43E0-A1CB-EBF85B8F872C 714EC30
+Loading driver 13AC6DD0-73D0-11D4-B06B-00AA00BD6DE7
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 716A940
+Loading driver at 0x0000713E000 EntryPoint=0x00007142691 EbcDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 716A718
+ProtectUefiImageCommon - 0x716A940
+  - 0x000000000713E000 - 0x0000000000006180
+InstallProtocolInterface: 13AC6DD1-73D0-11D4-B06B-00AA00BD6DE7 716A498
+InstallProtocolInterface: 96F46153-97A7-4793-ACC1-FA19BF78EA97 7143BA0
+InstallProtocolInterface: 2755590C-6F3C-42FA-9EA4-A3BA543CDA25 7151F18
+InstallProtocolInterface: AAEACCFD-F27B-4C17-B610-75CA1F2DFB52 7151B98
+Loading driver A19B1FE7-C1BC-49F8-875F-54A5D542443F
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 71510C0
+Loading driver at 0x00007146000 EntryPoint=0x00007147C66 CpuIo2Dxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 7151A18
+ProtectUefiImageCommon - 0x71510C0
+  - 0x0000000007146000 - 0x00000000000029C0
+InstallProtocolInterface: AD61F191-AE5F-4C0E-B9FA-E869D288C64F 7148880
+Loading driver 1A1E4886-9517-440E-9FDE-3BE44CEE2136
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 7151440
+Loading driver at 0x00006D06000 EntryPoint=0x00006D0DEF8 CpuDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 7150F18
+ProtectUefiImageCommon - 0x7151440
+  - 0x0000000006D06000 - 0x000000000001BD40
+Paging: added 512 pages to page table pool
+CurrentPagingContext:
+  MachineType   - 0x8664
+  PageTableBase - 0x7801000
+  Attributes    - 0xC0000002
+InstallProtocolInterface: 26BACCB1-6F42-11D4-BCE7-0080C73C8881 6D1AEC0
+MemoryProtectionCpuArchProtocolNotify:
+ProtectUefiImageCommon - 0x7EAE2A8
+  - 0x0000000007E89000 - 0x000000000002F000
+ProtectUefiImageCommon - 0x7170BC0
+  - 0x0000000007158000 - 0x000000000000B600
+ProtectUefiImageCommon - 0x71702C0
+  - 0x0000000007164000 - 0x0000000000005E40
+ProtectUefiImageCommon - 0x716FB40
+  - 0x0000000007152000 - 0x0000000000004C40
+ProtectUefiImageCommon - 0x716F140
+  - 0x00000000076E4000 - 0x0000000000009000
+SetUefiImageMemoryAttributes - 0x00000000076E4000 - 0x0000000000001000 (0x0000000000004000)
+SetUefiImageMemoryAttributes - 0x00000000076E5000 - 0x0000000000006000 (0x0000000000020000)
+SetUefiImageMemoryAttributes - 0x00000000076EB000 - 0x0000000000002000 (0x0000000000004000)
+ProtectUefiImageCommon - 0x716E9C0
+  - 0x00000000076DD000 - 0x0000000000007000
+SetUefiImageMemoryAttributes - 0x00000000076DD000 - 0x0000000000001000 (0x0000000000004000)
+SetUefiImageMemoryAttributes - 0x00000000076DE000 - 0x0000000000004000 (0x0000000000020000)
+SetUefiImageMemoryAttributes - 0x00000000076E2000 - 0x0000000000002000 (0x0000000000004000)
+ProtectUefiImageCommon - 0x716B040
+  - 0x00000000076D7000 - 0x0000000000006000
+SetUefiImageMemoryAttributes - 0x00000000076D7000 - 0x0000000000001000 (0x0000000000004000)
+SetUefiImageMemoryAttributes - 0x00000000076D8000 - 0x0000000000003000 (0x0000000000020000)
+SetUefiImageMemoryAttributes - 0x00000000076DB000 - 0x0000000000002000 (0x0000000000004000)
+ProtectUefiImageCommon - 0x716B3C0
+  - 0x000000000714C000 - 0x0000000000002E40
+ProtectUefiImageCommon - 0x716A940
+  - 0x000000000713E000 - 0x0000000000006180
+ProtectUefiImageCommon - 0x71510C0
+  - 0x0000000007146000 - 0x00000000000029C0
+ProtectUefiImageCommon - 0x7151440
+  - 0x0000000006D06000 - 0x000000000001BD40
+ConvertPages: failed to find range A0000 - FFFFF
+ConvertPages: failed to find range 80000000 - FBFFFFFF
+ConvertPages: failed to find range FEC00000 - FEC00FFF
+Failed to update capability: [8] 00000000FED00000 - 00000000FED003FF (C700000000000001 -> C700000000026001)
+ConvertPages: failed to find range FEE00000 - FEEFFFFF
+ConvertPages: failed to find range FFC00000 - FFFFFFFF
+ConvertPages: failed to find range FD00000000 - FFFFFFFFFF
+AP Loop Mode is 1
+AP Vector: non-16-bit = 7149000/447
+GetMicrocodePatchInfoFromHob: MicrocodeBase = 0x0, MicrocodeSize = 0x0
+CPU[0000]: Microcode revision = 00000000, expected = 00000000
+Detect CPU count: 1
+InstallProtocolInterface: 3FDDA605-A76E-4F46-AD29-12F4531B3D08 6D1AFC0
+Loading driver F6697AC4-A776-4EE1-B643-1FEFF2B615BB
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 714FB40
+Loading driver at 0x00006D26000 EntryPoint=0x00006D272C8 IncompatiblePciDeviceSupportDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 714FE98
+ProtectUefiImageCommon - 0x714FB40
+  - 0x0000000006D26000 - 0x0000000000002280
+InstallProtocolInterface: EB23F55A-7863-4AC2-8D3D-956535DE0375 6D28180
+Loading driver 11A6EDF6-A9BE-426D-A6CC-B22FE51D9224
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 7145BC0
+Loading driver at 0x00006CFA000 EntryPoint=0x00006CFD90B PciHotPlugInitDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 7145098
+ProtectUefiImageCommon - 0x7145BC0
+  - 0x0000000006CFA000 - 0x00000000000053C0
+InstallProtocolInterface: AA0E8BC1-DABC-46B0-A844-37B8169B2BEA 6CFF290
+Loading driver 4B28E4C7-FF36-4E10-93CF-A82159E777C5
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 71451C0
+Loading driver at 0x000076D0000 EntryPoint=0x000076D2D0D ResetSystemRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 7145598
+ProtectUefiImageCommon - 0x71451C0
+  - 0x00000000076D0000 - 0x0000000000007000
+SetUefiImageMemoryAttributes - 0x00000000076D0000 - 0x0000000000001000 (0x0000000000004008)
+SetUefiImageMemoryAttributes - 0x00000000076D1000 - 0x0000000000004000 (0x0000000000020008)
+SetUefiImageMemoryAttributes - 0x00000000076D5000 - 0x0000000000002000 (0x0000000000004008)
+InstallProtocolInterface: 27CFAC88-46CC-11D4-9A38-0090273FC14D 0
+InstallProtocolInterface: 9DA34AE0-EAF9-4BBF-8EC3-FD60226C44BE 76D5108
+InstallProtocolInterface: 695D7835-8D47-4C11-AB22-FA8ACCE7AE7A 76D5148
+InstallProtocolInterface: 2DF6BA0B-7092-440D-BD04-FB091EC3F3C1 76D50C8
+Loading driver C8339973-A563-4561-B858-D8476F9DEFC4
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D2B140
+Loading driver at 0x00006D03000 EntryPoint=0x00006D0437D Metronome.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D2B398
+ProtectUefiImageCommon - 0x6D2B140
+  - 0x0000000006D03000 - 0x0000000000002840
+InstallProtocolInterface: 26BACCB2-6F42-11D4-BCE7-0080C73C8881 6D056B0
+Loading driver 348C4D62-BFBD-4882-9ECE-C80BB1C4783B
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D2AB40
+Loading driver at 0x00006CC0000 EntryPoint=0x00006CD8498 HiiDatabase.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D2B498
+ProtectUefiImageCommon - 0x6D2AB40
+  - 0x0000000006CC0000 - 0x000000000001CDC0
+InstallProtocolInterface: E9CA4775-8657-47FC-97E7-7ED65A084324 6CDC968
+InstallProtocolInterface: 0FD96974-23AA-4CDC-B9CB-98D17750322A 6CDC9E0
+InstallProtocolInterface: EF9FC172-A1B2-4693-B327-6D32FC416042 6CDCA08
+InstallProtocolInterface: 587E72D7-CC50-4F79-8209-CA291FC1A10F 6CDCA60
+InstallProtocolInterface: 0A8BADD5-03B8-4D19-B128-7B8F0EDAA596 6CDCA90
+InstallProtocolInterface: 31A6406A-6BDF-4E46-B2A2-EBAA89C40920 6CDC988
+InstallProtocolInterface: 1A1241E6-8F19-41A9-BC0E-E8EF39E06546 6CDC9B0
+Loading driver 96B5C032-DF4C-4B6E-8232-438DCF448D0E
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D29040
+Loading driver at 0x00006D00000 EntryPoint=0x00006D012D6 NullMemoryTestDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D29F18
+ProtectUefiImageCommon - 0x6D29040
+  - 0x0000000006D00000 - 0x0000000000002340
+InstallProtocolInterface: 309DE7F1-7F5E-4ACE-B49C-531BE5AA95EF 6D021A0
+Loading driver 9622E42C-8E38-4A08-9E8F-54F784652F6B
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D29440
+Loading driver at 0x00006CEA000 EntryPoint=0x00006CEE347 AcpiTableDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D29698
+ProtectUefiImageCommon - 0x6D29440
+  - 0x0000000006CEA000 - 0x00000000000078C0
+InstallProtocolInterface: FFE06BDD-6107-46A6-7BB2-5A9C7EC5275C 6D250A0
+InstallProtocolInterface: EB97088E-CFDF-49C6-BE4B-D906A5B20E86 6D250B0
+Loading driver BDCE85BB-FBAA-4F4E-9264-501A2C249581
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D251C0
+Loading driver at 0x00006CE3000 EntryPoint=0x00006CE719D S3SaveStateDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D25B18
+ProtectUefiImageCommon - 0x6D251C0
+  - 0x0000000006CE3000 - 0x00000000000065C0
+InstallProtocolInterface: BD445D79-B7AD-4F04-9AD8-29BD2040EB3C 0
+InstallProtocolInterface: E857CAF6-C046-45DC-BE3F-EE0765FBA887 6CE9300
+Loading driver A210F973-229D-4F4D-AA37-9895E6C9EABA
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CF9040
+Loading driver at 0x00006CF6000 EntryPoint=0x00006CF73E7 DpcDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF9D18
+ProtectUefiImageCommon - 0x6CF9040
+  - 0x0000000006CF6000 - 0x0000000000002280
+InstallProtocolInterface: 480F8AE9-0C46-4AA9-BC89-DB9FBA619806 6CF7F40
+Loading driver 8657015B-EA43-440D-949A-AF3BE365C0FC
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CF9440
+Loading driver at 0x00006CB2000 EntryPoint=0x00006CB5FE0 IoMmuDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF9C18
+ProtectUefiImageCommon - 0x6CF9440
+  - 0x0000000006CB2000 - 0x0000000000006680
+InstallProtocolInterface: F8775D50-8ABD-4ADF-92AC-853E51F6C8DC 0
+Loading driver 22DC2B60-FE40-42AC-B01F-3AB1FAD9AAD8
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D24B40
+Loading driver at 0x000076CA000 EntryPoint=0x000076CC5A3 EmuVariableFvbRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF9818
+ProtectUefiImageCommon - 0x6D24B40
+  - 0x00000000076CA000 - 0x0000000000006000
+SetUefiImageMemoryAttributes - 0x00000000076CA000 - 0x0000000000001000 (0x0000000000004008)
+SetUefiImageMemoryAttributes - 0x00000000076CB000 - 0x0000000000003000 (0x0000000000020008)
+SetUefiImageMemoryAttributes - 0x00000000076CE000 - 0x0000000000002000 (0x0000000000004008)
+EMU Variable FVB Started
+Disabling EMU Variable FVB since flash variables appear to be supported.
+Error: Image at 000076CA000 start failed: Aborted
+SetUefiImageMemoryAttributes - 0x00000000076CA000 - 0x0000000000006000 (0x0000000000000008)
+Loading driver CBD2E4D5-7068-4FF5-B462-9822B4AD8D60
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D24B40
+Loading driver at 0x000076C0000 EntryPoint=0x000076C92FE VariableRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D24098
+ProtectUefiImageCommon - 0x6D24B40
+  - 0x00000000076C0000 - 0x0000000000010000
+SetUefiImageMemoryAttributes - 0x00000000076C0000 - 0x0000000000001000 (0x0000000000004008)
+SetUefiImageMemoryAttributes - 0x00000000076C1000 - 0x000000000000D000 (0x0000000000020008)
+SetUefiImageMemoryAttributes - 0x00000000076CE000 - 0x0000000000002000 (0x0000000000004008)
+VarCheckLibRegisterSetVariableCheckHandler - 0x76C6654 Success
+Variable driver common space: 0x3FF9C 0x3FF9C 0x3FF9C
+Variable driver will work with auth variable format!
+InstallProtocolInterface: CD3D0A05-9E24-437C-A891-1EE053DB7638 76CE7D0
+InstallProtocolInterface: AF23B340-97B4-4685-8D4F-A3F28169B21D 76CE7A0
+InstallProtocolInterface: 1E5668E2-8481-11D4-BCF1-0080C73C8881 0
+VarCheckLibRegisterSetVariableCheckHandler - 0x76C61F1 Success
+InstallProtocolInterface: 81D1675C-86F6-48DF-BD95-9A6E4F0925C3 76CE740
+Loading driver 6C2004EF-4E0E-4BE4-B14C-340EB4AA5891
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D23C40
+Loading driver at 0x000076BB000 EntryPoint=0x000076BD18C StatusCodeHandlerRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D23B18
+ProtectUefiImageCommon - 0x6D23C40
+  - 0x00000000076BB000 - 0x0000000000005000
+SetUefiImageMemoryAttributes - 0x00000000076BB000 - 0x0000000000001000 (0x0000000000004008)
+SetUefiImageMemoryAttributes - 0x00000000076BC000 - 0x0000000000003000 (0x0000000000020008)
+SetUefiImageMemoryAttributes - 0x00000000076BF000 - 0x0000000000001000 (0x0000000000004008)
+Loading driver 52FE8196-F9DE-4D07-B22F-51F77A0E7C41
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D23440
+Loading driver at 0x00006CDF000 EntryPoint=0x00006CE0B31 LocalApicTimerDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D22018
+ProtectUefiImageCommon - 0x6D23440
+  - 0x0000000006CDF000 - 0x0000000000003240
+InstallProtocolInterface: 26BACCB3-6F42-11D4-BCE7-0080C73C8881 6CE2060
+Loading driver 128FB770-5E79-4176-9E51-9BB268A17DD1
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6D220C0
+Loading driver at 0x00006C9C000 EntryPoint=0x00006CA3505 PciHostBridgeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6D22B98
+ProtectUefiImageCommon - 0x6D220C0
+  - 0x0000000006C9C000 - 0x000000000000A400
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+Select Item: 0x19
+Select Item: 0x19
+PciHostBridgeUtilityInitRootBridge: populated root bus 0, with room for 255 subordinate bus(es)
+RootBridge: PciRoot(0x0)
+  Support/Attr: 70069 / 70069
+    DmaAbove4G: No
+NoExtConfSpace: Yes
+     AllocAttr: 3 (CombineMemPMem Mem64Decode)
+           Bus: 0 - FF Translation=0
+            Io: C000 - FFFF Translation=0
+           Mem: 80000000 - FBFFFFFF Translation=0
+    MemAbove4G: C000000000 - DFFFFFFFFF Translation=0
+          PMem: FFFFFFFFFFFFFFFF - 0 Translation=0
+   PMemAbove4G: FFFFFFFFFFFFFFFF - 0 Translation=0
+InstallProtocolInterface: CF8034BE-6768-4D8B-B739-7CCE683A9FBE 6D224C0
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6D22918
+InstallProtocolInterface: 2F707EBB-4A1A-11D4-9A38-0090273FC14D 6CF51F0
+Loading driver EBF342FE-B1D3-4EF8-957C-8048606FF671
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CF54C0
+Loading driver at 0x00006C6A000 EntryPoint=0x00006C7A277 SetupBrowser.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF5818
+ProtectUefiImageCommon - 0x6CF54C0
+  - 0x0000000006C6A000 - 0x0000000000018AC0
+InstallProtocolInterface: B9D4C360-BCFB-4F9B-9298-53C136982258 6C825B0
+InstallProtocolInterface: A770C357-B693-4E6D-A6CF-D21C728E550B 6C825E0
+InstallProtocolInterface: 1F73B18D-4630-43C1-A1DE-6F80855D7DA4 6C825C0
+Loading driver F9D88642-0737-49BC-81B5-6889CD57D9EA
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CF42C0
+Loading driver at 0x00006CAB000 EntryPoint=0x00006CAE71C SmbiosDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF4518
+ProtectUefiImageCommon - 0x6CF42C0
+  - 0x0000000006CAB000 - 0x00000000000060C0
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+Select Item: 0x19
+Select Item: 0x19
+Select Item: 0x26
+DetectSmbiosVersion: SMBIOS version from QEMU: 0x0208
+InstallProtocolInterface: 03583FF6-CB36-4940-947E-B9B39F4AFAF7 6CB0F50
+Loading driver 17985E6F-E778-4D94-AEFA-C5DD2B77E186
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CF3B40
+Loading driver at 0x00006C8C000 EntryPoint=0x00006C906D8 QemuFwCfgAcpiPlatform.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF3E18
+ProtectUefiImageCommon - 0x6CF3B40
+  - 0x0000000006C8C000 - 0x0000000000007180
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+AcpiPlatformEntryPoint: waiting for root bridges to be connected, registered callback
+Loading driver FA20568B-548B-4B2B-81EF-1BA08D4A3CEC
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CF3140
+Loading driver at 0x00006C3A000 EntryPoint=0x00006C3FE00 BootScriptExecutorDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF3698
+ProtectUefiImageCommon - 0x6CF3140
+  - 0x0000000006C3A000 - 0x0000000000017C40
+Loading driver A487A478-51EF-48AA-8794-7BEE2A0562F1
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CF2BC0
+Loading driver at 0x00006C54000 EntryPoint=0x00006C5A844 tftpDynamicCommand.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF2F18
+InstallProtocolInterface: 6A1EE763-D47A-43B4-AABE-EF1DE2AB56FC 6C5CDF0
+ProtectUefiImageCommon - 0x6CF2BC0
+  - 0x0000000006C54000 - 0x000000000000A940
+InstallProtocolInterface: 3C7200E9-005F-4EA4-87DE-A3DFAC8A27C3 6C5CB20
+Loading driver 19618BCE-55AE-09C6-37E9-4CE04084C7A1
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CBF040
+Loading driver at 0x00006C20000 EntryPoint=0x00006C27EED httpDynamicCommand.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CF2318
+InstallProtocolInterface: 6A1EE763-D47A-43B4-AABE-EF1DE2AB56FC 6C2AAB0
+ProtectUefiImageCommon - 0x6CBF040
+  - 0x0000000006C20000 - 0x000000000000CD40
+InstallProtocolInterface: 3C7200E9-005F-4EA4-87DE-A3DFAC8A27C3 6C2A7B0
+Loading driver 2F30DA26-F51B-4B6F-85C4-31873C281BCA
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CBF340
+Loading driver at 0x00006C84000 EntryPoint=0x00006C89136 LinuxInitrdDynamicShellCommand.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CBF918
+InstallProtocolInterface: 6A1EE763-D47A-43B4-AABE-EF1DE2AB56FC 6C8B2B0
+ProtectUefiImageCommon - 0x6CBF340
+  - 0x0000000006C84000 - 0x0000000000007DC0
+InstallProtocolInterface: 3C7200E9-005F-4EA4-87DE-A3DFAC8A27C3 6C8AF60
+Loading driver F74D20EE-37E7-48FC-97F7-9B1047749C69
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CB9040
+Loading driver at 0x00006C65000 EntryPoint=0x00006C660B2 LogoDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CB9D18
+InstallProtocolInterface: 6A1EE763-D47A-43B4-AABE-EF1DE2AB56FC 6C66D70
+ProtectUefiImageCommon - 0x6CB9040
+  - 0x0000000006C65000 - 0x0000000000004CC0
+InstallProtocolInterface: 53CD299F-2BC1-40C0-8C07-23F64FDB30E0 6C66BC0
+Loading driver DCE1B094-7DC6-45D0-9FDD-D7FC3CC3E4EF
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CA7040
+Loading driver at 0x00006C60000 EntryPoint=0x00006C62AE9 QemuRamfbDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CA7D18
+ProtectUefiImageCommon - 0x6CA7040
+  - 0x0000000006C60000 - 0x0000000000004FC0
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+Select Item: 0x19
+Error: Image at 00006C60000 start failed: Not Found
+Loading driver FE5CEA76-4F72-49E8-986F-2CD899DFFE5D
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CA7040
+Loading driver at 0x00006C5F000 EntryPoint=0x00006C62E8E FaultTolerantWriteDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CA7F18
+ProtectUefiImageCommon - 0x6CA7040
+  - 0x0000000006C5F000 - 0x0000000000005B80
+Ftw: FtwWorkSpaceLba - 0x41, WorkBlockSize  - 0x1000, FtwWorkSpaceBase - 0x0
+Ftw: FtwSpareLba     - 0x42, SpareBlockSize - 0x1000
+Ftw: NumberOfWorkBlock - 0x1, FtwWorkBlockLba - 0x41
+Ftw: WorkSpaceLbaInSpare - 0x0, WorkSpaceBaseInSpare - 0x0
+Ftw: Remaining work space size - FE0
+InstallProtocolInterface: 3EBD9E82-2C78-4DE6-9786-8D4BFCB7C881 6C9A028
+NOTICE - AuthVariableLibInitialize() returns Unsupported!
+Variable driver will continue to work without auth variable support!
+RecordSecureBootPolicyVarData GetVariable SecureBoot Status E
+InstallProtocolInterface: 6441F818-6362-4E44-B570-7DBA31DD2453 0
+Loading driver 378D7B65-8DA9-4773-B6E4-A47826A833E1
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6CA74C0
+Loading driver at 0x000076B4000 EntryPoint=0x000076B74FC PcRtc.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6CA7798
+ProtectUefiImageCommon - 0x6CA74C0
+  - 0x00000000076B4000 - 0x0000000000007000
+SetUefiImageMemoryAttributes - 0x00000000076B4000 - 0x0000000000001000 (0x0000000000004008)
+SetUefiImageMemoryAttributes - 0x00000000076B5000 - 0x0000000000005000 (0x0000000000020008)
+SetUefiImageMemoryAttributes - 0x00000000076BA000 - 0x0000000000001000 (0x0000000000004008)
+InstallProtocolInterface: 27CFAC87-46CC-11D4-9A38-0090273FC14D 0
+Loading driver F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C99140
+Loading driver at 0x00006C37000 EntryPoint=0x00006C3816D WatchdogTimer.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C99A98
+ProtectUefiImageCommon - 0x6C99140
+  - 0x0000000006C37000 - 0x0000000000002080
+InstallProtocolInterface: 665E3FF5-46CC-11D4-9A38-0090273FC14D 6C38ED0
+Loading driver AD608272-D07F-4964-801E-7BD3B7888652
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C83040
+Loading driver at 0x000076B0000 EntryPoint=0x000076B1F44 MonotonicCounterRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C99698
+ProtectUefiImageCommon - 0x6C83040
+  - 0x00000000076B0000 - 0x0000000000004000
+SetUefiImageMemoryAttributes - 0x00000000076B0000 - 0x0000000000001000 (0x0000000000004008)
+SetUefiImageMemoryAttributes - 0x00000000076B1000 - 0x0000000000002000 (0x0000000000020008)
+SetUefiImageMemoryAttributes - 0x00000000076B3000 - 0x0000000000001000 (0x0000000000004008)
+InstallProtocolInterface: 1DA97072-BDDC-4B30-99F1-72A0B56FFF2A 0
+Loading driver 42857F0A-13F2-4B21-8A23-53D3F714B840
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C83440
+Loading driver at 0x000076AB000 EntryPoint=0x000076AD1D1 CapsuleRuntimeDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C83918
+ProtectUefiImageCommon - 0x6C83440
+  - 0x00000000076AB000 - 0x0000000000005000
+SetUefiImageMemoryAttributes - 0x00000000076AB000 - 0x0000000000001000 (0x0000000000004008)
+SetUefiImageMemoryAttributes - 0x00000000076AC000 - 0x0000000000003000 (0x0000000000020008)
+SetUefiImageMemoryAttributes - 0x00000000076AF000 - 0x0000000000001000 (0x0000000000004008)
+InstallProtocolInterface: 5053697E-2CBC-4819-90D9-0580DEEE5754 0
+Loading driver EBF8ED7C-0DD1-4787-84F1-F48D537DCACF
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C980C0
+Loading driver at 0x00006C19000 EntryPoint=0x00006C1CD1F DriverHealthManagerDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C98D18
+ProtectUefiImageCommon - 0x6C980C0
+  - 0x0000000006C19000 - 0x0000000000006040
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6C1EA60
+InstallProtocolInterface: 330D4706-F2A0-4E4F-A369-B66FA8D54385 6C1EA30
+Loading driver 6D33944A-EC75-4855-A54D-809C75241F6C
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C96D40
+Loading driver at 0x000069C8000 EntryPoint=0x000069DAD23 BdsDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C97C18
+ProtectUefiImageCommon - 0x6C96D40
+  - 0x00000000069C8000 - 0x000000000001BA00
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+InstallProtocolInterface: 665E3FF6-46CC-11D4-9A38-0090273FC14D 69E3770
+Loading driver 28A03FF4-12B3-4305-A417-BB1A4F94081E
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C962C0
+Loading driver at 0x00006C03000 EntryPoint=0x00006C09C71 RamDiskDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C96C98
+ProtectUefiImageCommon - 0x6C962C0
+  - 0x0000000006C03000 - 0x000000000000AB80
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6C96A98
+InstallProtocolInterface: 330D4706-F2A0-4E4F-A369-B66FA8D54385 6C0D858
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6C0D8F0
+InstallProtocolInterface: 330D4706-F2A0-4E4F-A369-B66FA8D54385 6C94FB0
+InstallProtocolInterface: AB38A0DF-6873-44A9-87E6-D4EB56148449 6C0D5E0
+InstallProtocolInterface: 28A03FF4-12B3-4305-A417-BB1A4F94081E 6C94F98
+Loading driver E660EA85-058E-4B55-A54B-F02F83A24707
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C536C0
+Loading driver at 0x000069B4000 EntryPoint=0x000069C2730 DisplayEngine.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C53C18
+ProtectUefiImageCommon - 0x6C536C0
+  - 0x00000000069B4000 - 0x0000000000013980
+InstallProtocolInterface: 9BBE29E9-FDA1-41EC-AD52-452213742D2E 69C5DF0
+InstallProtocolInterface: 4311EDC0-6054-46D4-9E40-893EA952FCCC 69C5E08
+Loading driver 4110465D-5FF3-4F4B-B580-24ED0D06747A
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C347C0
+Loading driver at 0x00006C15000 EntryPoint=0x00006C170C5 SmbiosPlatformDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C53B18
+ProtectUefiImageCommon - 0x6C347C0
+  - 0x0000000006C15000 - 0x0000000000003F40
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+Select Item: 0x19
+Select Item: 0x27
+SmbiosAdd: Smbios type 1 with size 0x51 is added to 32-bit table
+SmbiosCreateTable: Initialize 32-bit entry point structure
+SmbiosCreateTable() re-allocate SMBIOS 32-bit table
+SmbiosAdd: Smbios type 3 with size 0x2A is added to 32-bit table
+SmbiosAdd: Smbios type 4 with size 0x44 is added to 32-bit table
+SmbiosAdd: Smbios type 16 with size 0x19 is added to 32-bit table
+SmbiosAdd: Smbios type 17 with size 0x35 is added to 32-bit table
+SmbiosAdd: Smbios type 19 with size 0x21 is added to 32-bit table
+SmbiosAdd: Smbios type 32 with size 0xD is added to 32-bit table
+FirmwareVendor:            "EDK II" (6 chars)
+FirmwareVersionString:     "unknown" (7 chars)
+FirmwareReleaseDateString: "2/2/2022" (8 chars)
+SmbiosAdd: Smbios type 0 with size 0x33 is added to 32-bit table
+Loading driver D9DCC5DF-4007-435E-9098-8970935504B2
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C31340
+Loading driver at 0x000069FA000 EntryPoint=0x000069FD820 PlatformDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C31698
+ProtectUefiImageCommon - 0x6C31340
+  - 0x00000000069FA000 - 0x0000000000005DC0
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 69FFBC0
+InstallProtocolInterface: 330D4706-F2A0-4E4F-A369-B66FA8D54385 69FFC90
+Loading driver 93B80004-9FB3-11D4-9A3A-0090273FC14D
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C2FC40
+Loading driver at 0x000069A4000 EntryPoint=0x000069B0280 PciBusDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C30698
+ProtectUefiImageCommon - 0x6C2FC40
+  - 0x00000000069A4000 - 0x000000000000F240
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69B2DC0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69B2CA0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69B2F80
+InstallProtocolInterface: 19CB87AB-2CB9-4665-8360-DDCF6054F79D 69B2F60
+Loading driver 83DD3B39-7CAF-4FAC-A542-E050B767E3A7
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C2F140
+Loading driver at 0x000069F6000 EntryPoint=0x000069F7E01 VirtioPciDeviceDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C2F918
+ProtectUefiImageCommon - 0x6C2F140
+  - 0x00000000069F6000 - 0x0000000000003240
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69F8FA0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69F9000
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69F8F80
+Loading driver 0170F60C-1D40-4651-956D-F0BD9879D527
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C2E040
+Loading driver at 0x000069F1000 EntryPoint=0x000069F44FB Virtio10.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C2EF18
+ProtectUefiImageCommon - 0x6C2E040
+  - 0x00000000069F1000 - 0x0000000000004D80
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69F5B20
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69F5B80
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69F5B00
+Loading driver 11D92DFB-3CA9-4F93-BA2E-4780ED3E03B5
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C2E440
+Loading driver at 0x000069ED000 EntryPoint=0x000069EF3A5 VirtioBlkDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C2E698
+ProtectUefiImageCommon - 0x6C2E440
+  - 0x00000000069ED000 - 0x0000000000003780
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69F05A0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69F0600
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69F0580
+Loading driver FAB5D4F4-83C0-4AAF-8480-442D11DF6CEA
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C2DB40
+Loading driver at 0x000069E9000 EntryPoint=0x000069EB94D VirtioScsiDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C2DE18
+ProtectUefiImageCommon - 0x6C2DB40
+  - 0x00000000069E9000 - 0x0000000000003D00
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69ECB20
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69ECB80
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69ECB00
+Loading driver 58E26F0D-CBAC-4BBA-B70F-18221415665A
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C2D140
+Loading driver at 0x000069E5000 EntryPoint=0x000069E6EBE VirtioRngDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C2D718
+ProtectUefiImageCommon - 0x6C2D140
+  - 0x00000000069E5000 - 0x00000000000031C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69E7FE0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69E8040
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69E7FC0
+Loading driver 51CCF399-4FDF-4E55-A45B-E123F84D456A
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C14CC0
+Loading driver at 0x0000699F000 EntryPoint=0x000069A1823 ConPlatformDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C14198
+ProtectUefiImageCommon - 0x6C14CC0
+  - 0x000000000699F000 - 0x00000000000040C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69A2E20
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69A2F20
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69A2DF0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69A2DC0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69A2F20
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69A2DF0
+Loading driver 408EDCEC-CF6D-477C-A5A8-B4844E3DE281
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C14340
+Loading driver at 0x0000698F000 EntryPoint=0x00006994226 ConSplitterDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C13F98
+ProtectUefiImageCommon - 0x6C14340
+  - 0x000000000698F000 - 0x0000000000007740
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6996420
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6996500
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6995D20
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69963A0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69964E0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6995D00
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6996320
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69964C0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6995CE0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69962A0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69964A0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6995CC0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6996220
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6996480
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6995CA0
+InstallProtocolInterface: 387477C1-69C7-11D2-8E39-00A0C969723B 6996050
+InstallProtocolInterface: DD9E7534-7762-4698-8C14-F58517A625AA 6996080
+InstallProtocolInterface: 31878C87-0B75-11D5-9A4F-0090273FC14D 69960F0
+InstallProtocolInterface: 8D59D32B-C655-4AE9-9B15-F25904992A43 6996148
+InstallProtocolInterface: 387477C2-69C7-11D2-8E39-00A0C969723B 6995F10
+InstallProtocolInterface: 387477C2-69C7-11D2-8E39-00A0C969723B 6995DF0
+Loading driver CCCB0C28-4B24-11D5-9A5A-0090273FC14D
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C10340
+Loading driver at 0x00006988000 EntryPoint=0x0000698B1B2 GraphicsConsoleDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C10B18
+ProtectUefiImageCommon - 0x6C10340
+  - 0x0000000006988000 - 0x00000000000060C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 698C760
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 698DF00
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 698C730
+Loading driver 9E863906-A40F-4875-977F-5B93FF237FC6
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C00BC0
+Loading driver at 0x00006978000 EntryPoint=0x0000697DA7A TerminalDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C00818
+ProtectUefiImageCommon - 0x6C00BC0
+  - 0x0000000006978000 - 0x0000000000007E00
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 697FC00
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 697FC60
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 697F990
+Loading driver 806040CA-DAD9-4978-A3B4-2D2AB0C8A48F
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C00240
+Loading driver at 0x00006983000 EntryPoint=0x000069854F6 QemuKernelLoaderFsDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C00A18
+ProtectUefiImageCommon - 0x6C00240
+  - 0x0000000006983000 - 0x0000000000004680
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+Select Item: 0x17
+Select Item: 0x8
+Select Item: 0xB
+Select Item: 0x14
+Error: Image at 00006983000 start failed: Not Found
+Loading driver 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C00240
+Loading driver at 0x00006983000 EntryPoint=0x000069860D0 DiskIoDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C00918
+ProtectUefiImageCommon - 0x6C00240
+  - 0x0000000006983000 - 0x0000000000004A40
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69877E0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6987900
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69877C0
+Loading driver 1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C0F140
+Loading driver at 0x0000696A000 EntryPoint=0x0000696EDA8 PartitionDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C0F498
+ProtectUefiImageCommon - 0x6C0F140
+  - 0x000000000696A000 - 0x0000000000006900
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69706A0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69707A0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6970680
+Loading driver CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C0F6C0
+Loading driver at 0x00006997000 EntryPoint=0x00006998361 EnglishDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C0EF98
+ProtectUefiImageCommon - 0x6C0F6C0
+  - 0x0000000006997000 - 0x0000000000002340
+InstallProtocolInterface: 1D85CD7F-F43D-11D2-9A0C-0090273FC14D 6998EA0
+InstallProtocolInterface: A4C751FC-23AE-4C3E-92E9-4964CF63F349 6998E40
+Loading driver 0167CCC4-D0F7-4F21-A3EF-9E64B7CDCE8B
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C0E1C0
+Loading driver at 0x00006965000 EntryPoint=0x00006967CF8 ScsiBus.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C0EA18
+ProtectUefiImageCommon - 0x6C0E1C0
+  - 0x0000000006965000 - 0x0000000000004200
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6969000
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69690A0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6968FE0
+Loading driver 0A66E322-3740-4CCE-AD62-BD172CECCA35
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C02040
+Loading driver at 0x00006951000 EntryPoint=0x000069592DB ScsiDisk.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C02D18
+ProtectUefiImageCommon - 0x6C02040
+  - 0x0000000006951000 - 0x0000000000009E80
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 695ACE0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 695AD40
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 695AC60
+Loading driver 021722D8-522B-4079-852A-FE44C2C13F49
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C029C0
+Loading driver at 0x00006961000 EntryPoint=0x00006962FA6 SataController.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C02898
+ProtectUefiImageCommon - 0x6C029C0
+  - 0x0000000006961000 - 0x0000000000003480
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69642C0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6964320
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6964240
+Loading driver 5E523CB4-D397-4986-87BD-A6DD8B22F455
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C01040
+Loading driver at 0x00006939000 EntryPoint=0x00006941AFE AtaAtapiPassThruDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C02598
+ProtectUefiImageCommon - 0x6C01040
+  - 0x0000000006939000 - 0x000000000000B800
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6944380
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69443E0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6944300
+Loading driver 19DF145A-B1D4-453F-8507-38816676D7F6
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6C01440
+Loading driver at 0x0000694A000 EntryPoint=0x0000694E7A7 AtaBusDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C01698
+ProtectUefiImageCommon - 0x6C01440
+  - 0x000000000694A000 - 0x0000000000006B00
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6950680
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6950770
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6950750
+Loading driver 5BE3BDF4-53CF-46A3-A6A9-73C34A6E5EE3
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69E4B40
+Loading driver at 0x00006925000 EntryPoint=0x0000692C513 NvmExpressDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6C01898
+ProtectUefiImageCommon - 0x69E4B40
+  - 0x0000000006925000 - 0x0000000000009DC0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 692EC00
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 692EC60
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 692EB30
+InstallProtocolInterface: 5C198761-16A8-4E69-972C-89D67954F81D 692EAA0
+Loading driver 864E1CA8-85EB-4D63-9DCC-6E0FC90FFD55
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69E4240
+Loading driver at 0x0000695D000 EntryPoint=0x0000695EF3B SioBusDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 69E4598
+ProtectUefiImageCommon - 0x69E4240
+  - 0x000000000695D000 - 0x00000000000033C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6960160
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6960280
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6960140
+Loading driver E2775B47-D453-4EE3-ADA7-391A1B05AC17
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 699CCC0
+Loading driver at 0x00006932000 EntryPoint=0x000069368AC PciSioSerialDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 699C918
+ProtectUefiImageCommon - 0x699CCC0
+  - 0x0000000006932000 - 0x0000000000006400
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6938240
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69382A0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69380B0
+Loading driver C4D1F932-821F-4744-BF06-6D30F7730F8D
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 699C340
+Loading driver at 0x0000691E000 EntryPoint=0x00006921FFE Ps2KeyboardDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 699CB18
+ProtectUefiImageCommon - 0x699C340
+  - 0x000000000691E000 - 0x0000000000006080
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6923EA0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6923F00
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6923E30
+Loading driver B8E62775-BB0A-43F0-A843-5BE8B14F8CCD
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 699B140
+Loading driver at 0x00006975000 EntryPoint=0x0000697674D BootGraphicsResourceTableDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 699BB18
+ProtectUefiImageCommon - 0x699B140
+  - 0x0000000006975000 - 0x0000000000002AC0
+InstallProtocolInterface: CDEA2BD3-FC25-4C1C-B97C-B31186064990 6977870
+InstallProtocolInterface: 4B5DC1DF-1EAA-48B2-A7E9-EAC489A00B5C 69778F0
+Loading driver 961578FE-B6B7-44C3-AF35-6BC705CD2B1F
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 699A040
+Loading driver at 0x00006908000 EntryPoint=0x0000690FFF9 Fat.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 699B398
+ProtectUefiImageCommon - 0x699A040
+  - 0x0000000006908000 - 0x000000000000A240
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6912060
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 69120C0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6911E90
+Loading driver 905F13B0-8F91-4B0A-BD76-E1E78F9422E4
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 699A9C0
+Loading driver at 0x00006901000 EntryPoint=0x00006905C95 UdfDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 699AE18
+ProtectUefiImageCommon - 0x699A9C0
+  - 0x0000000006901000 - 0x0000000000006580
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69072E0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6907440
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 69072C0
+Loading driver 7BD9DDF7-8B83-488E-AEC9-24C78610289C
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6982040
+Loading driver at 0x000068F7000 EntryPoint=0x000068FE3D7 VirtioFsDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6982F18
+ProtectUefiImageCommon - 0x6982040
+  - 0x00000000068F7000 - 0x00000000000097C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 69006A0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6900680
+Loading driver A2F436EA-A127-4EF8-957C-8048606FF670
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69829C0
+Loading driver at 0x000068EF000 EntryPoint=0x000068F42FE SnpDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6982918
+ProtectUefiImageCommon - 0x69829C0
+  - 0x00000000068EF000 - 0x0000000000007540
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68F6340
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68F63A0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68F6310
+Loading driver E4F61863-FE2C-4B56-A8F4-08519BC439DF
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6981040
+Loading driver at 0x000068E8000 EntryPoint=0x000068EC6B8 VlanConfigDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6981F18
+ProtectUefiImageCommon - 0x6981040
+  - 0x00000000068E8000 - 0x0000000000006DC0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68EE480
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68EEC40
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68EE460
+Loading driver 025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6981440
+Loading driver at 0x000068DD000 EntryPoint=0x000068E4913 MnpDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6981A18
+ProtectUefiImageCommon - 0x6981440
+  - 0x00000000068DD000 - 0x000000000000A740
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68E7540
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68E75C0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68E7570
+Loading driver 529D3F93-E8E9-4E73-B1E1-BDF6A9D50113
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6980040
+Loading driver at 0x000068D6000 EntryPoint=0x000068DA3C4 ArpDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6980F18
+ProtectUefiImageCommon - 0x6980040
+  - 0x00000000068D6000 - 0x00000000000060C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68DBEC0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68DBF80
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68DBE20
+Loading driver 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6980440
+Loading driver at 0x000068CB000 EntryPoint=0x000068D2944 Dhcp4Dxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6980998
+ProtectUefiImageCommon - 0x6980440
+  - 0x00000000068CB000 - 0x000000000000A7C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68D5500
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68D5600
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68D5560
+Loading driver 9FB1A1F3-3B71-4324-B39A-745CBB015FFF
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6974B40
+Loading driver at 0x000068A1000 EntryPoint=0x000068B0F5E Ip4Dxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6974A18
+ProtectUefiImageCommon - 0x6974B40
+  - 0x00000000068A1000 - 0x0000000000014C40
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+Select Item: 0x19
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68B57E0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68B5740
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68B56F0
+Loading driver 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69743C0
+Loading driver at 0x000068C2000 EntryPoint=0x000068C882D Udp4Dxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6973018
+ProtectUefiImageCommon - 0x69743C0
+  - 0x00000000068C2000 - 0x0000000000008BC0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68CA980
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68CAA60
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68CA9F0
+Loading driver DC3641B8-2FA8-4ED3-BC1F-F9962A03454B
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69730C0
+Loading driver at 0x000068B8000 EntryPoint=0x000068BF1C6 Mtftp4Dxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6973918
+ProtectUefiImageCommon - 0x69730C0
+  - 0x00000000068B8000 - 0x00000000000094C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68C12C0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68C1340
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68C12F0
+Loading driver 1A7E4468-2F55-4A56-903C-01265EB7622B
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6973540
+Loading driver at 0x0000687B000 EntryPoint=0x0000688572E TcpDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6972E98
+ProtectUefiImageCommon - 0x6973540
+  - 0x000000000687B000 - 0x00000000000124C0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 688D0A0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 688CF60
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 688CF20
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 688D060
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 688CF60
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 688CF20
+Loading driver B95E9FDA-26DE-48D2-8807-1F9107AC5E3A
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69722C0
+Loading driver at 0x00006869000 EntryPoint=0x00006874C8D UefiPxeBcDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6972618
+ProtectUefiImageCommon - 0x69722C0
+  - 0x0000000006869000 - 0x0000000000011B80
+Select Item: 0x0
+FW CFG Signature: 0x554D4551
+Select Item: 0x1
+FW CFG Revision: 0x3
+QemuFwCfg interface (DMA) is supported.
+Select Item: 0x19
+Select Item: 0x19
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 687A8C0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 687A7E0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 687A890
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 687A860
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 687A7E0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 687A890
+Loading driver 86CDDF93-4872-4597-8AF9-A35AE4D3725F
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69717C0
+Loading driver at 0x0000682B000 EntryPoint=0x0000683D26C IScsiDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6971D18
+ProtectUefiImageCommon - 0x69717C0
+  - 0x000000000682B000 - 0x000000000001EAC0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68497A0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6847E40
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6847DB0
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6849760
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6847E40
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6847DB0
+InstallProtocolInterface: 59324945-EC44-4C0D-B1CD-9DB139DF070C 6847D40
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 68496E0
+InstallProtocolInterface: 330D4706-F2A0-4E4F-A369-B66FA8D54385 69714A8
+InstallProtocolInterface: 7671D9D0-53DB-4173-AA69-2327F21F0BC7 6849740
+Loading driver A92CDB4B-82F1-4E0B-A516-8A655D371524
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 695C6C0
+Loading driver at 0x0000689B000 EntryPoint=0x0000689ECE7 VirtioNetDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6972218
+ProtectUefiImageCommon - 0x695C6C0
+  - 0x000000000689B000 - 0x0000000000005700
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68A0540
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68A05A0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68A04C0
+Loading driver 2FB92EFA-2EE0-4BAE-9EB6-7464125E1EF7
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 695B040
+Loading driver at 0x00006861000 EntryPoint=0x00006866439 UhciDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 695B518
+ProtectUefiImageCommon - 0x695B040
+  - 0x0000000006861000 - 0x0000000000007140
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6867F40
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6867FC0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6867FA0
+Loading driver BDFE430E-8F2A-4DB0-9991-6F856594777E
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 695B2C0
+Loading driver at 0x00006858000 EntryPoint=0x0000685E5AF EhciDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6947C18
+ProtectUefiImageCommon - 0x695B2C0
+  - 0x0000000006858000 - 0x0000000000008B40
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 68609A0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6860A00
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6860930
+Loading driver B7F50E91-A759-412C-ADE4-DCD03E7F7C28
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6947540
+Loading driver at 0x0000681D000 EntryPoint=0x00006826C6E XhciDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6947418
+ProtectUefiImageCommon - 0x6947540
+  - 0x000000000681D000 - 0x000000000000D080
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6829E00
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6829F00
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6829EE0
+Loading driver 240612B7-A063-11D4-9A3A-0090273FC14D
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6931D40
+Loading driver at 0x0000684E000 EntryPoint=0x0000685498F UsbBusDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6931C18
+ProtectUefiImageCommon - 0x6931D40
+  - 0x000000000684E000 - 0x0000000000009700
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6857460
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 68573C0
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6857360
+Loading driver 2D2E62CF-9ECF-43B7-8219-94E7FC713DFE
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69312C0
+Loading driver at 0x00006894000 EntryPoint=0x0000689831C UsbKbDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6931A98
+ProtectUefiImageCommon - 0x69312C0
+  - 0x0000000006894000 - 0x0000000000006600
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6899CA0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 689A460
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 689A440
+Loading driver 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6930D40
+Loading driver at 0x0000688E000 EntryPoint=0x00006891D3D UsbMassStorageDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6930B98
+ProtectUefiImageCommon - 0x6930D40
+  - 0x000000000688E000 - 0x0000000000005B40
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6893920
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 6893A00
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 68938F0
+Loading driver E3752948-B9A1-4770-90C4-DF41C38986BE
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 69307C0
+Loading driver at 0x00006816000 EntryPoint=0x0000681A3D0 QemuVideoDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6930A98
+ProtectUefiImageCommon - 0x69307C0
+  - 0x0000000006816000 - 0x0000000000006C80
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 681CAA0
+InstallProtocolInterface: 107A772C-D5E1-11D4-9A46-0090273FC14D 681CB00
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 681C890
+Loading driver D6099B94-CD97-4CC5-8714-7F6312701A8A
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 692F040
+Loading driver at 0x00006810000 EntryPoint=0x000068141B1 VirtioGpuDxe.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 692FC98
+ProtectUefiImageCommon - 0x692F040
+  - 0x0000000006810000 - 0x0000000000005F80
+InstallProtocolInterface: 18A031AB-B443-4D1A-A5C0-0C09261E9F71 6815D60
+InstallProtocolInterface: 6A7A5CFF-E8D9-4F70-BADA-75AB3025CE14 6815D30
+Driver 6490F1C5-EBCC-4665-8892-0075B9BB49B7 was discovered but not loaded!!
+[Bds] Entry...
+[BdsDxe] Locate Variable Policy protocol - Success
+Variable Driver Auto Update PlatformLang, PlatformLang:en, Lang:eng Status: Success
+PlatformBootManagerBeforeConsole
+Registered NotifyDevPath Event
+PCI Bus First Scanning
+PciBus: Discovered PCI @ [00|00|00]  [VID = 0x8086, DID = 0x1237]
+
+PciBus: Discovered PCI @ [00|01|00]  [VID = 0x8086, DID = 0x7000]
+
+PciBus: Discovered PCI @ [00|01|01]  [VID = 0x8086, DID = 0x7010]
+   BAR[4]: Type =   Io32; Alignment = 0xF;	Length = 0x10;	Offset = 0x20
+
+PciBus: Discovered PCI @ [00|01|03]  [VID = 0x8086, DID = 0x7113]
+
+PCI Bus Second Scanning
+PciBus: Discovered PCI @ [00|00|00]  [VID = 0x8086, DID = 0x1237]
+
+PciBus: Discovered PCI @ [00|01|00]  [VID = 0x8086, DID = 0x7000]
+
+PciBus: Discovered PCI @ [00|01|01]  [VID = 0x8086, DID = 0x7010]
+   BAR[4]: Type =   Io32; Alignment = 0xF;	Length = 0x10;	Offset = 0x20
+
+PciBus: Discovered PCI @ [00|01|03]  [VID = 0x8086, DID = 0x7113]
+
+PciBus: Discovered PCI @ [00|00|00]  [VID = 0x8086, DID = 0x1237]
+
+PciBus: Discovered PCI @ [00|01|00]  [VID = 0x8086, DID = 0x7000]
+
+PciBus: Discovered PCI @ [00|01|01]  [VID = 0x8086, DID = 0x7010]
+   BAR[4]: Type =   Io32; Alignment = 0xF;	Length = 0x10;	Offset = 0x20
+
+PciBus: Discovered PCI @ [00|01|03]  [VID = 0x8086, DID = 0x7113]
+
+PciHostBridge: SubmitResources for PciRoot(0x0)
+ I/O: Granularity/SpecificFlag = 0 / 01
+      Length/Alignment = 0x1000 / 0xFFF
+PciBus: HostBridge->SubmitResources() - Success
+PciHostBridge: NotifyPhase (AllocateResources)
+ RootBridge: PciRoot(0x0)
+  I/O: Base/Length/Alignment = C000/1000/FFF - Success
+PciBus: HostBridge->NotifyPhase(AllocateResources) - Success
+Process Option ROM: BAR Base/Length = 0/0
+PciBus: Resource Map for Root Bridge PciRoot(0x0)
+Type =   Io16; Base = 0xC000;	Length = 0x1000;	Alignment = 0xFFF
+   Base = 0xC000;	Length = 0x10;	Alignment = 0xF;	Owner = PCI [00|01|01:20]
+
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6919E18
+InstallProtocolInterface: 4CF5B200-68B8-4CA5-9EEC-B23E3F50029A 69196A8
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6919E98
+InstallProtocolInterface: 4CF5B200-68B8-4CA5-9EEC-B23E3F50029A 6918028
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6918E98
+InstallProtocolInterface: 4CF5B200-68B8-4CA5-9EEC-B23E3F50029A 6918428
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6918F18
+InstallProtocolInterface: 4CF5B200-68B8-4CA5-9EEC-B23E3F50029A 6918828
+InstallProtocolInterface: 30CFE3E7-3DE1-4586-BE20-DEABA1B3B793 0
+OnRootBridgesConnected: root bridges have been connected, installing ACPI tables
+Select Item: 0x19
+Select Item: 0x29
+Select Item: 0x19
+Select Item: 0x28
+Select Item: 0x19
+Select Item: 0x22
+Select Item: 0x19
+Select Item: 0x23
+InstallProtocolInterface: 928939B2-4235-462F-9580-F6A2B2C21A4F 0
+InstallQemuFwCfgTables: installed 6 tables
+PcRtc: Write 0x20 to CMOS location 0x32
+[Variable]END_OF_DXE is signaled
+Initialize variable error flag (FF)
+AcpiS3ContextSave!
+AcpiS3ContextSave TotalPageTableSize - 0xE pages
+AcpiS3Context: AcpiFacsTable is 0x 77DD000
+AcpiS3Context: IdtrProfile is 0x 776A000
+AcpiS3Context: S3NvsPageTableAddress is 0x 775B000
+AcpiS3Context: S3DebugBufferAddress is 0x 7752000
+AcpiS3Context: BootScriptStackBase is 0x 7753000
+AcpiS3Context: BootScriptStackSize is 0x    8000
+Found LPC Bridge device
+BdsPlatform.c+709: COM1 DevPath: PciRoot(0x0)/Pci(0x1,0x0)/Serial(0x0)/Uart(115200,8,N,1)/VenMsg(AD15A0D6-8BEC-4ACF-A073-D01DE77E2D88)
+BdsPlatform.c+747: COM2 DevPath: PciRoot(0x0)/Pci(0x1,0x0)/Serial(0x1)/Uart(115200,8,N,1)/VenMsg(AD15A0D6-8BEC-4ACF-A073-D01DE77E2D88)
+InstallProtocolInterface: 60FF8964-E906-41D0-AFED-F241E974E08E 0
+InstallProtocolInterface: FA20568B-548B-4B2B-81EF-1BA08D4A3CEC 0
+Found LPC Bridge device
+BdsPlatform.c+709: COM1 DevPath: PciRoot(0x0)/Pci(0x1,0x0)/Serial(0x0)/Uart(115200,8,N,1)/VenMsg(AD15A0D6-8BEC-4ACF-A073-D01DE77E2D88)
+BdsPlatform.c+747: COM2 DevPath: PciRoot(0x0)/Pci(0x1,0x0)/Serial(0x1)/Uart(115200,8,N,1)/VenMsg(AD15A0D6-8BEC-4ACF-A073-D01DE77E2D88)
+Select Item: 0xE
+[Bds]RegisterKeyNotify: 000C/0000 80000000/00 Success
+[Bds]RegisterKeyNotify: 0017/0000 80000000/00 Success
+[Bds]RegisterKeyNotify: 0000/000D 80000000/00 Success
+InstallProtocolInterface: 864E1CA8-85EB-4D63-9DCC-6E0FC90FFD55 6916B18
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6916198
+InstallProtocolInterface: 215FDD18-BD50-4FEB-890B-58CA0B4739E9 6916F38
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6916718
+InstallProtocolInterface: 215FDD18-BD50-4FEB-890B-58CA0B4739E9 69169B8
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6915F98
+InstallProtocolInterface: 215FDD18-BD50-4FEB-890B-58CA0B4739E9 6915038
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6916598
+InstallProtocolInterface: BB25CF6F-F1D4-11D2-9A0C-0090273FC1FD 6915128
+PciSioSerial: Create SIO child serial device - Success
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+Terminal - Mode 0, Column = 80, Row = 25
+Terminal - Mode 1, Column = 80, Row = 50
+Terminal - Mode 2, Column = 100, Row = 31
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+InstallProtocolInterface: 387477C1-69C7-11D2-8E39-00A0C969723B 69131C0
+InstallProtocolInterface: DD9E7534-7762-4698-8C14-F58517A625AA 69132A8
+InstallProtocolInterface: 387477C2-69C7-11D2-8E39-00A0C969723B 69131D8
+InstallProtocolInterface: 09576E91-6D3F-11D2-8E39-00A0C969723B 6913798
+InstallProtocolInterface: D3B36F2B-D551-11D4-9A46-0090273FC14D 0
+InstallProtocolInterface: D3B36F2C-D551-11D4-9A46-0090273FC14D 0
+InstallProtocolInterface: D3B36F2D-D551-11D4-9A46-0090273FC14D 0
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+PciSioSerial: Create SIO child serial device - Device Error
+InstallProtocolInterface: 387477C1-69C7-11D2-8E39-00A0C969723B 680D028
+InstallProtocolInterface: DD9E7534-7762-4698-8C14-F58517A625AA 680D040
+InstallProtocolInterface: D3B36F2B-D551-11D4-9A46-0090273FC14D 0
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+PciSioSerial: Create SIO child serial device - Device Error
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+PciSioSerial: Create SIO child serial device - Device Error
+PlatformBootManagerAfterConsole
+PlatformBdsPolicyBehavior: not restoring NvVars from disk since flash variables appear to be supported.
+Boot Mode:0
+Select Item: 0x19
+PlatformBdsConnectSequence
+Select Item: 0x19
+EfiBootManagerConnectAll
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+PciSioSerial: Create SIO child serial device - Device Error
+SataControllerStart START
+InstallProtocolInterface: A1E37052-80D9-4E65-A317-3E9A55C43EC9 680F1A0
+SataControllerStart END status = Success
+==AtaAtapiPassThru Start== Controller = 6918D98
+InstallProtocolInterface: 1D3DE7F0-0807-424F-AA69-11A54E19A46F 680CD40
+InstallProtocolInterface: 143B7632-B81B-4CB7-ABD3-B625A5B9BFFE 680CD90
+InstallProtocolInterface: 19DF145A-B1D4-453F-8507-38816676D7F6 680BD98
+InstallProtocolInterface: 0167CCC4-D0F7-4F21-A3EF-9E64B7CDCE8B 680AFA0
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+PciSioSerial: Create SIO child serial device - Device Error
+SataControllerStart START
+SataControllerStart error return status = Already started
+ClockRate = 1843200
+Divisor   = 1
+BaudRate/Actual (115200/115200) = 100%
+PciSioSerial: Create SIO child serial device - Device Error
+Select Item: 0x19
+[Bds]OsIndication: 0000000000000000
+[Bds]=============Begin Load Options Dumping ...=============
+  Driver Options:
+  SysPrep Options:
+  Boot Options:
+    Boot0000: UiApp 		 0x0109
+    Boot0001: EFI Internal Shell 		 0x0001
+  PlatformRecovery Options:
+    PlatformRecovery0000: Default PlatformRecovery 		 0x0001
+[Bds]=============End Load Options Dumping=============
+[Bds]BdsWait ...Zzzzzzzzzzzz...
+[Bds]Exit the waiting!
+[Bds]Stop Hotkey Service!
+[Bds]UnregisterKeyNotify: 000C/0000 Success
+[Bds]UnregisterKeyNotify: 0017/0000 Success
+[Bds]UnregisterKeyNotify: 0000/000D Success
+Memory  Previous  Current    Next   
+ Type    Pages     Pages     Pages  
+======  ========  ========  ========
+  0A    00000080  00000022  00000080
+  09    00000012  00000008  00000012
+  00    00000080  00000038  00000080
+  05    00000100  00000042  00000100
+  06    00000100  000000B1  00000100
+[Bds]Booting EFI Internal Shell
+[Bds] Expand Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(7C04A583-9E3E-4F1C-AD65-E05268D0B4D1) -> Fv(7CB8BDC9-F8EB-4F34-AAEA-3EE4AF6516A1)/FvFile(7C04A583-9E3E-4F1C-AD65-E05268D0B4D1)
+InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6914040
+Loading driver at 0x00006539000 EntryPoint=0x00006558EBB Shell.efi
+InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 680FB98
+ProtectUefiImageCommon - 0x6914040
+  - 0x0000000006539000 - 0x00000000000E2100
+InstallProtocolInterface: 387477C2-69C7-11D2-8E39-00A0C969723B 66F9020
+InstallProtocolInterface: 752F3136-4E16-4FDC-A22A-E5F46812F4CA 66F8F98
+InstallProtocolInterface: 6302D008-7F9B-4F30-87AC-60C9FEF5DA4E 65B43A0
