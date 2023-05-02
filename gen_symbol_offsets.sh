@@ -10,6 +10,9 @@ cat ${LOG} | grep Loading | grep -i efi | while read LINE; do
   ADDR="`${PEINFO} ${BUILD}/${NAME} | grep -A 5 text | grep VirtualAddress | cut -d " " -f2`"
   TEXT="`python -c "print(hex(${BASE} + ${ADDR}))"`"
   SYMS="`echo ${NAME} | sed -e "s/\.efi/\.debug/g"`"
-  echo "add-symbol-file ${BUILD}/${SYMS} ${TEXT}" >> .gdbinit
+
+  if ! $(grep -q ${SYMS} .gdbinit); then
+    echo "add-symbol-file ${BUILD}/${SYMS} ${TEXT}" >> .gdbinit
+  fi
 done
 

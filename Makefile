@@ -33,7 +33,7 @@ run:
 
 $(LOG):
 	@echo "[*] Starting log generation. Wait for ~10s and then press Ctrl+C"
-	@- $(QEMU) $(QEMUFLAGS)
+	@-$(QEMU) $(QEMUFLAGS) || true
 	# TODO: if 'timeout' is used, the file is not gernated; why?
 	# -timeout -s INT 2 $(QEMU) $(QEMUFLAGS) || true
 
@@ -57,4 +57,4 @@ $(GDBINIT_LOCAL): $(LOG) $(PEINFO)
 
 clean:
 	-rm $(GDBINIT_LOCAL) $(LOG)
-	-make -C edk2/ clean
+	# -make -C edk2/ clean
