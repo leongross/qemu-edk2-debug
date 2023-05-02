@@ -6,6 +6,8 @@ OVMFCODE:=$(OVMFBASE)/FV/OVMF_CODE.fd
 OVMFVARS:=$(OVMFBASE)/FV/OVMF_VARS.fd
 OVMFBIOS:=$(OVMFBASE)/FV/OVMF.fd  # edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd
 
+.PHONY: run debug clean
+.PRECIOUS: $(LOG)
 
 QEMU:=qemu-system-x86_64
 PEINFO:=peinfo/peinfo
@@ -25,13 +27,15 @@ QEMUFLAGS_RUN=--bios $(OVMFBIOS) \
 			  --net none \
 			  -serial mon:stdio \
 			  -s 
+
 run:
 	$(QEMU) $(QEMUFLAGS_RUN)
 
 $(LOG):
-	@echo "Starting log generation ($LOG_COLLECTION_TIMEOUT_SEC sec)"
-	-timeout $(LOG_COLLECTION_TIMEOUT_SEC) $(QEMU) $(QEMUFLAGS)
-	@echo "Stopped log generation"
+	@echo "[*] Starting log generation. Wait for ~10s and then press Ctrl+C"
+	@- $(QEMU) $(QEMUFLAGS)
+	# TODO: if 'timeout' is used, the file is not gernated; why?
+	# -timeout -s INT 2 $(QEMU) $(QEMUFLAGS) || true
 
 debug: $(GDBINIT_LOCAL)
 	@echo "[*] Attach to the ruinning gdb session with 'target'"
@@ -50,8 +54,6 @@ $(GDBINIT_LOCAL): $(LOG) $(PEINFO)
 
 # TDOD
 # build-edk: edk2/
-
-.PHONY: run debug clean
 
 clean:
 	-rm $(GDBINIT_LOCAL) $(LOG)
