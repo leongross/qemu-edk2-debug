@@ -29,8 +29,14 @@ def main():
     
     efi_objects = []
 
+
     with open(path_log, "r") as handle_log:
-        for line in handle_log.readlines():
+        list_log = handle_log.readlines()
+        if (list_log == []):
+            print(f"{path_log} may not be empty!")
+            sys.exit(1)
+
+        for line in list_log:
             line = line.strip("\n")
             line_split = line.split(" ")
 
@@ -49,29 +55,35 @@ def main():
                     except ValueError:
                         print(f"File {path_build/efi_name} has no text section?")
 
-    # for efi in efi_objects:
-    #     print(efi)
+    print(f"[*] Parsed {len(efi_objects)} efi files")
+    added = efi_to_file(path_efi_out, efi_objects, path_build)
+    print(f"[*] Added {added} new config lines")
 
-    efi_to_file(path_efi_out, efi_objects, path_build)
-
-def efi_to_file(file: Path, efi_objects: list[efi_info], build_dir: Path):
+def efi_to_file(file: Path, efi_infos: list[efi_info], build_dir: Path) -> int:
     current_config = []
+    added = 0
+
     try:
         with open(file, "r") as handle_file_read:
             current_config = handle_file_read.readlines()
     except: FileNotFoundError
 
     with open(file, "a+") as handle_file_append:
-        for efi in efi_objects:
-            if (len(current_config)) > 0:
-                for line in current_config:
-                    if efi.syms not in line:
-                        handle_file_append.write(f"add-symbol-file {str(build_dir)}/{efi.syms} {hex(efi.text)}\n")
-                    else:
-                        print(f"Skipping efi object {efi}")
-            else:
-                handle_file_append.write(f"add-symbol-file {str(build_dir)}/{efi.syms} {hex(efi.text)}\n")
+        for efi in efi_infos:
+            duplicate = False
+            for current_config_line in current_config:
+                if efi.syms in current_config_line:
+                    duplicate = True
+                    break
 
+                if duplicate:
+                    break
+
+            if not duplicate:
+                handle_file_append.write(f"add-symbol-file {str(build_dir)}/{efi.syms} {hex(efi.text)}\n")
+                added += 1
+
+    return added
 
 if __name__ == "__main__":
     main()
