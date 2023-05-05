@@ -1,10 +1,13 @@
 SHELL:=/bin/bash
 
 LOG:=debug.log
-OVMFBASE:=edk2/Build/OvmfX64/DEBUG_GCC5/
+OVMFBASE:=edk2/Build/OvmfX64/DEBUG_GCC5
 OVMFCODE:=$(OVMFBASE)/FV/OVMF_CODE.fd
 OVMFVARS:=$(OVMFBASE)/FV/OVMF_VARS.fd
 OVMFBIOS:=$(OVMFBASE)/FV/OVMF.fd  # edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd
+
+PATH_EDK2:=$(realpath ./edk2)
+DOCKER_IMAGE:=ghcr.io/leongross/qemu-edk2-debug:latest
 
 .PHONY: run debug clean
 .PRECIOUS: $(LOG)
@@ -53,14 +56,29 @@ $(PEINFO): peinfo
 
 
 $(GDBINIT_LOCAL): $(LOG) $(PEINFO)
-	./gen_symbol_offsets.sh
+	./gen_symbol_offsets.py $(OVMFBASE)/X64/
 	./setup_gdbinit.sh
 
 qemu/build/qemu-x86_64: qemu
 	cd qemu && ./configure && make -j $(nproc)
 
+devcontainer-patched:
+	docker build -t $(DOCKER_IMAGE) -f docker/devcontainer-patched.Dockerfile . \
+		--build-arg username=$(shell whoami) \
+		--build-arg workdir=$(PATH_EDK2) \
+		--label "org.opencontainers.image.source=https://github.com/leongross/qemu-edk2-debug" \
+		--label "org.opencontainers.image.description=Patched edk2 dev image" \
+		--label "org.opencontainers.image.licenses=MIT"
+
+	docker push $(DOCKER_IMAGE)
+
 # TDOD
 # build-edk: edk2/
+
+# $(PATH_EDK2)/.devcontainer/devcontainer.json:
+# dev:
+# 	sed -e 's|/CHANGEME/$(PATH_EDK2)/||' .devcontainer/devcontainer.json
+# 	-cp -r .devcontainer $(PATH_EDK2)/
 
 clean:
 	-rm $(GDBINIT_LOCAL) $(LOG)

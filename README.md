@@ -36,6 +36,19 @@ $ gdb
 If the previous step succeeded, gdb should automatically reload all the debug files.
 This should add symbols, functions and even source identifiers.
 
+## Pitfalls
+
+### Building in a container
+
+**Problem**: If you build edk2 in a containerized environment, the paths for the dbeug symbols may be incorrect.
+For example, if the container has a volume mount containig the edk2 sources that is monuted to `/workspace`, the debug files will contain these aboslut file pahtes for the sources.
+These paths sometimes cannot be resolved and the debugging experience is disturbed.
+
+**Solution**
+1. Build on the host system
+2. Change the mountpoint to match the system gdb is running on
+
+
 ## TODOs
 
 - [ ] edk2 build using root Makefile

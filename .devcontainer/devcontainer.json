@@ -1,0 +1,18 @@
+{
+  "name": "edk2-dev",
+  "image": "ghcr.io/tianocore/containers/fedora-35-dev:latest",
+  "postCreateCommand": "git config --global --add safe.directory * && pip install --upgrade -r pip-requirements.txt",
+  "workspaceFolder": "/CHANGE_ME",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode.cpptools",
+        "walonli.edk2-vscode",
+        "zachflower.uncrustify"
+      ]
+    }
+  }
+}
