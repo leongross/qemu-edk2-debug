@@ -49,6 +49,11 @@ These paths sometimes cannot be resolved and the debugging experience is disturb
 2. Change the mountpoint to match the system gdb is running on
 
 
+**Problem**: The build environment might be polluted iwh old paths if you ran it before wihtout the adjusted environment
+**Solution**:
+    * `git reset HEAD --hard -f`
+    * Adjust the tooling path by `make -C BaseTools/ clean` and `export EDK_TOOLS_PATH=$(realpath BaseTools/)`
+
 ## TODOs
 
 - [ ] edk2 build using root Makefile

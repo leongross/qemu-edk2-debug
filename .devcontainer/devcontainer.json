@@ -1,18 +1,13 @@
 {
-  "name": "edk2-dev",
-  "image": "ghcr.io/tianocore/containers/fedora-35-dev:latest",
-  "postCreateCommand": "git config --global --add safe.directory * && pip install --upgrade -r pip-requirements.txt",
-  "workspaceFolder": "/CHANGE_ME",
+  "image": "ghcr.io/leongross/qemu-edk2-debug:latest",
+  "workspaceMount": "source=${localWorkspaceFolder}/,target=/you/loca/path/to/edk2,type=bind",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "DavidAnson.vscode-markdownlint",
-        "ms-azuretools.vscode-docker",
-        "ms-vscode-remote.remote-containers",
-        "ms-vscode.cpptools",
-        "walonli.edk2-vscode",
-        "zachflower.uncrustify"
+      "extensions": ["streetsidesoftware.code-spell-checker", 
+        "ms-vscode.cpptools"  
       ]
     }
-  }
+  },
+  "forwardPorts": [3000]
 }
+
